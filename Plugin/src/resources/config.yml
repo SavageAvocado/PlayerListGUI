@@ -1,0 +1,67 @@
+#################################################
+##              PlayerListGUI 2:               ##
+##     By: SavageAvocado    Date: 12/26/19     ##
+#################################################
+
+# The title of the GUI... Should be pretty self-explanatory.
+gui-title: '&aOnline players: &f%player-count%'
+
+# The format which will be used to display the player's username.
+# Supports: %username% and %displayname%
+name-format: "&6%displayname%"
+
+# Default placeholders: (These don't require any 3rd party plugins.)
+# %location% : Player's location Format: (world; x, y, z)
+# %world% : Player's current world.
+# %locx% : Player's 'x' location.
+# %locy% : Player's 'y' location.
+# %locz% : Player's 'z' location.
+# %gamemode% : Player's gamemode.
+# %health% : Player's health.
+# %food% : Player's food level.
+# %level% : Player's level.
+
+# Vault placeholders: (These require Vault.)
+# %bal% : Players balance.
+# %rank% : Players rank.
+
+# PlaceholderAPI placeholders: (These require PlaceholderAPI.)
+# https://www.spigotmc.org/wiki/placeholderapi-placeholders/
+
+lore:
+  - '&aLevel: &f%level%'
+  - '&aHealth: &f%health%'
+  - '&aFood level: &f%food%'
+  - '&aWorld: &f%world%'
+
+placeholder-block:
+  material: GRAY_STAINED_GLASS_PANE
+  amount: 1
+  damage: 7
+  name: ""
+  lore: []
+
+next-page-block:
+  material: ARROW
+  amount: 1
+  damage: 0
+  name: "&aNext page &8»"
+  lore: []
+
+last-page-block:
+  material: ARROW
+  amount: 1
+  damage: 0
+  name: "&8« &aLast page"
+  lore: []
+
+# Group priorities.
+priorities:
+  enabled: false # Requires Vault.
+  groups: # 0 = first in list. ? > 0 = last in list.
+    owner: 0
+    admin: 1
+    mod: 2
+    mvp: 3
+    vip: 4
+    default: 5
