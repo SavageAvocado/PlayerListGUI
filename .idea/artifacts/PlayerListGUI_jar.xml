@@ -3,8 +3,8 @@
     <output-path>E:/Servers/1.15.2/plugins</output-path>
     <root id="archive" name="PlayerListGUI.jar">
       <element id="module-output" name="PlayerListGUI-legacy" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/resources/config.yml" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/resources/plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/plugin.yml" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Libs/savagedev/IMLib.jar" path-in-jar="/" />
     </root>
   </artifact>

@@ -1,0 +1,24 @@
+name: PlayerListGUI
+description: Lists all of the players on your server in a fancy GUI.
+
+author: SavageAvocado
+website: https://www.savagedev.net/playerlistgui
+
+softdepend: [Vault, PlaceholderAPI, Essentials, SuperVanish, VanishNoPacket]
+main: net.savagedev.playerlistgui.PlayerListGUI
+api-version: "1.13"
+version: ${version}
+
+commands:
+  playerlistgui:
+    description: Base command for PlayerListGUI.
+    usage: /<command>
+    aliases: [plgui, plg]
+  playerlistgui reload:
+    description: Reload the plugin.
+    permission: playerlistgui.reload
+    usage: /<command> reload
+    aliases: [rl]
+  list:
+    description: Opens a GUI list of all of the players currently online.
+    aliases: [elist, online, eonline, playerlist, eplayerlist, plist, eplist, who, ewho]
