@@ -4,8 +4,6 @@ import net.savagedev.imlib.gui.DynamicInteractionMenu;
 import net.savagedev.imlib.gui.InteractionMenu;
 import net.savagedev.playerlistgui.PlayerListGUI;
 import net.savagedev.playerlistgui.gui.GuiBuilder;
-import net.savagedev.playerlistgui.gui.scheduler.GuiScheduler;
-import net.savagedev.playerlistgui.user.User;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

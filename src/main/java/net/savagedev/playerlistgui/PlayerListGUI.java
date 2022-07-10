@@ -1,6 +1,5 @@
 package net.savagedev.playerlistgui;
 
-import com.earth2me.essentials.updatecheck.UpdateChecker;
 import net.savagedev.avocadonotifier.AvocadoNotifier;
 import net.savagedev.imlib.IMLib;
 import net.savagedev.playerlistgui.commands.ListCmd;
