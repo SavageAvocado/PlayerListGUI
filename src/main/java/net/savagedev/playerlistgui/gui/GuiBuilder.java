@@ -67,7 +67,7 @@ public class GuiBuilder implements BiConsumer<InteractionMenu, Player> {
         for (int slot = 0, index = startingIndex; this.currentPage >= pages ? slot < sizeModified - startingIndex : slot < 45; slot++, index++) {
             final User user = players.get(index);
             final Player player = user.getPlayer();
-            if (!viewer.hasPermission("playerlistgui.vanished") && user.isVanished() && player != viewer) {
+            if (!viewer.hasPermission("playerlistgui.vanished") && user.isVanished() && !player.equals(viewer)) {
                 slot--;
                 continue;
             }

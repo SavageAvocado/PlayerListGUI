@@ -13,8 +13,8 @@ import java.util.List;
 public class SkullBuilder {
     private static final SkullOwnerEditor SKULL_OWNER_EDITOR = PlayerListGUI.isLegacy() ? new LegacySkullOwnerEditor() : new ModernSkullOwnerEditor();
 
-    private ItemStack skull;
-    private SkullMeta meta;
+    private final ItemStack skull;
+    private final SkullMeta meta;
 
     private SkullBuilder() {
         if (PlayerListGUI.isLegacy()) {

@@ -6,10 +6,11 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nonnull;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
-public class PlaceholderUtils {
+public final class PlaceholderUtils {
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.##");
 
     private PlaceholderUtils() {
@@ -27,6 +28,7 @@ public class PlaceholderUtils {
     }
 
     public static List<String> applyPlaceholders(@Nonnull Player player, @Nonnull List<String> strs, Function<MessageUtils.FastString, String> function) {
+        strs = new ArrayList<>(strs);
         for (int i = 0; i < strs.size(); i++) {
             strs.set(i, PlaceholderUtils.applyPlaceholders(player, strs.get(i), function));
         }
@@ -35,11 +37,8 @@ public class PlaceholderUtils {
 
     private static String applyDefaultPlaceholders(@Nonnull Player player, @Nonnull String str) {
         final Location location = player.getLocation();
-        final World world = location.getWorld();
-        if (world == null) {
-            throw new NullPointerException("World cannot be null!");
-        }
-        final String worldName = world.getName();
+
+        final String worldName = player.getWorld().getName();
         final String x = DECIMAL_FORMAT.format(location.getX());
         final String y = DECIMAL_FORMAT.format(location.getY());
         final String z = DECIMAL_FORMAT.format(location.getZ());

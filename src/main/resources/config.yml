@@ -37,31 +37,33 @@ lore:
 placeholder-block:
   material: GRAY_STAINED_GLASS_PANE
   amount: 1
+  # This is for legacy support. If you are on any version from 1.13+, you can ignore this.
   damage: 7
   name: ""
-  lore: []
+  lore: [ ]
 
 next-page-block:
   material: ARROW
   amount: 1
   damage: 0
   name: "&aNext page &8»"
-  lore: []
+  lore: [ ]
 
 last-page-block:
   material: ARROW
   amount: 1
   damage: 0
   name: "&8« &aLast page"
-  lore: []
+  lore: [ ]
 
 # Group priorities.
 priorities:
   enabled: false # Requires Vault.
-  groups: # 0 = first in list. ? > 0 = last in list.
-    owner: 0
-    admin: 1
-    mod: 2
-    mvp: 3
-    vip: 4
-    default: 5
+  # Groups will be displayed from top to bottom. So in this example, owners will show up first in the GUI.
+  groups:
+    - owner
+    - admin
+    - mod
+    - mvp
+    - vip
+    - default

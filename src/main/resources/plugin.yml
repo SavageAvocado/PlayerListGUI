@@ -14,11 +14,6 @@ commands:
     description: Base command for PlayerListGUI.
     usage: /<command>
     aliases: [plgui, plg]
-  playerlistgui reload:
-    description: Reload the plugin.
-    permission: playerlistgui.reload
-    usage: /<command> reload
-    aliases: [rl]
   list:
     description: Opens a GUI list of all of the players currently online.
     aliases: [elist, online, eonline, playerlist, eplayerlist, plist, eplist, who, ewho]
