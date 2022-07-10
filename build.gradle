@@ -35,6 +35,7 @@ dependencies {
     compileOnly 'com.github.mbax:VanishNoPacket:3.22'
     compileOnly 'com.github.LeonMangler:SuperVanish:6.2.6-4'
 
+    implementation 'net.savagedev:AvocadoNotifier:1.0.0'
     implementation 'net.savagedev:SpigotUpdateChecker:1.0.1'
     implementation 'net.savagedev:IMLib:1.1.0-20220710.014032-1'
     implementation 'org.bstats:bstats-bukkit:3.0.0'

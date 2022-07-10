@@ -1,6 +1,7 @@
 package net.savagedev.playerlistgui;
 
 import com.earth2me.essentials.updatecheck.UpdateChecker;
+import net.savagedev.avocadonotifier.AvocadoNotifier;
 import net.savagedev.imlib.IMLib;
 import net.savagedev.playerlistgui.commands.ListCmd;
 import net.savagedev.playerlistgui.commands.PlayerListGUICmd;
@@ -103,6 +104,7 @@ public class PlayerListGUI extends JavaPlugin {
     }
 
     private void initListeners() {
+        new AvocadoNotifier(this);
         PluginManager pluginManager = this.getServer().getPluginManager();
         pluginManager.registerEvents(new ConnectionListener(this), this);
     }
