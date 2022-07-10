@@ -2,7 +2,6 @@ package net.savagedev.playerlistgui;
 
 import net.savagedev.playerlistgui.utils.MessageUtils;
 import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -82,10 +81,10 @@ public class PlayerListGUIConfig {
             plugin.getLogger().log(Level.WARNING, "Invalid last page block material type in config! (" + lastPageMaterial + ")");
         }
 
-        final ConfigurationSection groups = plugin.getConfig().getConfigurationSection("priorities.groups");
+        final List<String> groups = plugin.getConfig().getStringList("priorities.groups");
         if (groups != null) {
-            for (String group : groups.getKeys(false)) {
-                this.groupPriorities.putIfAbsent(group, plugin.getConfig().getInt("priorities.groups." + group));
+            for (String group : groups) {
+                this.groupPriorities.putIfAbsent(group, groups.indexOf(group));
             }
         } else {
             plugin.getLogger().log(Level.WARNING, "Groups configuration section is null!");
