@@ -1,5 +1,6 @@
 package net.savagedev.playerlistgui;
 
+import net.savagedev.avocadonotifier.AvocadoNotifier;
 import net.savagedev.imlib.IMLib;
 import net.savagedev.playerlistgui.commands.ListCmd;
 import net.savagedev.playerlistgui.commands.PlayerListGUICmd;
@@ -8,10 +9,11 @@ import net.savagedev.playerlistgui.depend.vanish.VanishProvider;
 import net.savagedev.playerlistgui.depend.vanish.VanishProviderLoader;
 import net.savagedev.playerlistgui.depend.vault.VaultLoader;
 import net.savagedev.playerlistgui.depend.vault.VaultProvider;
-import net.savagedev.playerlistgui.listeners.PlayerListeners;
-import net.savagedev.playerlistgui.metrics.Metrics;
+import net.savagedev.playerlistgui.listeners.ConnectionListener;
 import net.savagedev.playerlistgui.user.UserManager;
 import net.savagedev.updatechecker.ResourceUpdateChecker;
+import net.savagedev.updatechecker.scheduler.SpigotScheduler;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Material;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,6 +37,9 @@ public class PlayerListGUI extends JavaPlugin {
         return legacy;
     }
 
+    private final ResourceUpdateChecker updateChecker = new ResourceUpdateChecker.Builder()
+            .setScheduler(new SpigotScheduler(this)).setResourceId(36641).create();
+
     private PlaceholderAPIProvider papiProvider;
     private VanishProvider vanishProvider;
     private VaultProvider vaultProvider;
@@ -46,15 +51,18 @@ public class PlayerListGUI extends JavaPlugin {
         this.initConfig();
         new IMLib(this);
 
-        new ResourceUpdateChecker(36641)
-                .addFailureListener(exception -> this.getLogger().log(Level.WARNING, "Failed to check for updates."))
-                .addSuccessListener(version -> {
-                    if (version.equalsIgnoreCase(this.getDescription().getVersion())) {
-                        this.getLogger().log(Level.INFO, "Thank you for using " + this.getDescription().getName() + " v" + this.getDescription().getVersion() + " by " + this.getDescription().getAuthors().get(0) + ".");
-                    } else {
-                        this.getLogger().log(Level.INFO, "Version " + version + " is available at: https://www.spigotmc.org/resources/playerlistgui.36641/");
-                    }
-                }).checkUpdatesAsync();
+        this.updateChecker.checkForUpdateAsync().whenComplete((version, exception) -> {
+            if (exception != null) {
+                this.getLogger().log(Level.WARNING, "Failed to check for updates.");
+                return;
+            }
+
+            if (version.equalsIgnoreCase(this.getDescription().getVersion())) {
+                this.getLogger().log(Level.INFO, "Thank you for using " + this.getDescription().getName() + " v" + this.getDescription().getVersion() + " by " + this.getDescription().getAuthors().get(0) + ".");
+            } else {
+                this.getLogger().log(Level.INFO, "Version " + version + " is available at: " + this.updateChecker.getResourceUrl());
+            }
+        });
 
         this.initCommands();
         this.initListeners();
@@ -81,7 +89,7 @@ public class PlayerListGUI extends JavaPlugin {
     }
 
     private void initMetrics() {
-        new Metrics(this);
+        new Metrics(this, 300);
     }
 
     private void initConfig() {
@@ -95,8 +103,13 @@ public class PlayerListGUI extends JavaPlugin {
     }
 
     private void initListeners() {
+        new AvocadoNotifier(this);
         PluginManager pluginManager = this.getServer().getPluginManager();
-        pluginManager.registerEvents(new PlayerListeners(this), this);
+        pluginManager.registerEvents(new ConnectionListener(this), this);
+    }
+
+    public ResourceUpdateChecker getUpdateChecker() {
+        return this.updateChecker;
     }
 
     public PlaceholderAPIProvider getPapiProvider() {

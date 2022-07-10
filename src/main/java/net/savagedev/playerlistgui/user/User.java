@@ -16,7 +16,7 @@ public class User implements Comparable<User> {
 
     @Override
     public int compareTo(User user) {
-        return -Integer.compare(user.priority, this.priority);
+        return Integer.compare(user.priority, this.priority);
     }
 
     public String getPrefix() {
